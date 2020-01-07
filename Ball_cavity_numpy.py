@@ -39,9 +39,10 @@ class Ball(object):
 		self.s_radius = s_radius
 		self.cavity_radius = cavity_radius
 		self.L = L
-		self.position = np.array([[(self.s_radius + self.cavity_radius + (self.c_radius - self.s_radius - self.cavity_radius)*(random_sample())**(1/2))*np.cos(2*np.pi*random_sample()),
-		(self.s_radius + self.cavity_radius + (self.c_radius - self.s_radius - self.cavity_radius)*(random_sample())**(1/2))*np.sin(2*np.pi*random_sample()),
-		self.L*random_sample() + self.s_radius] for i in range(n)])
+		self.random = np.array([[random_sample(), random_sample(), random_sample()] for i in range(n)])
+		self.position = np.array([[(self.s_radius + self.cavity_radius + (self.c_radius - self.s_radius - self.cavity_radius)*(self.random[i][0])**(1/2))*np.cos(2*np.pi*self.random[i][1]),
+		(self.s_radius + self.cavity_radius + (self.c_radius - self.s_radius - self.cavity_radius)*(self.random[i][0])**(1/2))*np.sin(2*np.pi*self.random[i][1]),
+		self.L*self.random[i][2] + self.s_radius] for i in range(n)])
 
 									
 
